@@ -2,8 +2,9 @@
 {
     public enum CargoEnum
     {
-        Operacional = 1,
-        Administrador = 2,
-        SuperAdministrador = 3
+        Aluno = 1,
+        Prefessor = 2,
+        Supervisor = 3,
+        Administrador = 4
     }
 }

@@ -7,5 +7,6 @@ namespace JwtToken.Services.AuthService
     {
         //Interface é como se fosse um contrato Ex do metodo abaixo no controler que herda esse contrato.
         Task<Response<UsuarioCriacao>> Registrar(UsuarioCriacao usuarioRegistro);
+        Task<Response<string>> Login(UsuarioLoginDto usuarioLogin);
     }
 }

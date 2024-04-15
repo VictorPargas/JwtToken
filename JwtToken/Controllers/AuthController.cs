@@ -19,7 +19,8 @@ namespace JwtToken.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult> Login(UsuarioLoginDto usuarioLogin)
         {    
-            return Ok();
+            var resposta = await _authInterface.Login(usuarioLogin);
+            return Ok(resposta);
         }
 
         [HttpPost("Register")]

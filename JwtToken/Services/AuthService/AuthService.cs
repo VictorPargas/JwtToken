@@ -2,6 +2,7 @@
 using JwtToken.Data;
 using JwtToken.Models;
 using JwtToken.Services.SenhaService;
+using Microsoft.EntityFrameworkCore;
 
 namespace JwtToken.Services.AuthService
 {
@@ -57,13 +58,13 @@ namespace JwtToken.Services.AuthService
             return respostaServico;
         }
 
-        public async Task<Response<UsuarioLoginDto>> Login(UsuarioLoginDto usuarioLogin)
+        public async Task<Response<string>> Login(UsuarioLoginDto usuarioLogin)
         {
-            Response<UsuarioLoginDto> respostaServico = new Response<UsuarioLoginDto>();
+            Response<string> respostaServico = new Response<string>();
 
             try
             {
-                var usuario = _context.Usuario.FirstOrDefault(userBanco => userBanco.Email == usuarioLogin.Email);
+                var usuario = await _context.Usuario.FirstOrDefaultAsync(userBanco => userBanco.Email == usuarioLogin.Email);
 
                 if(usuario == null)
                 {
@@ -80,6 +81,9 @@ namespace JwtToken.Services.AuthService
                 }
 
                 var token = _senhaInterface.CriarToken(usuario);
+
+                respostaServico.Dados = token;
+                respostaServico.Mensagem = "Usuário logado com sucesso!";
             }
             catch(Exception ex)
             {

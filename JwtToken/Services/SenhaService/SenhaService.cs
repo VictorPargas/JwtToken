@@ -59,7 +59,7 @@ namespace JwtToken.Services.SenhaService
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
 
-            return "";
+            return jwt;
         }
     }
 }
